@@ -1,0 +1,351 @@
+2025-09-11 15:26:51,267 - __main__ - INFO - Enhanced Chatbot Trainer initialized
+2025-09-11 15:26:55,282 - __main__ - INFO - Model directory: models
+2025-09-11 15:26:55,313 - __main__ - INFO - Max sequence length: 50
+2025-09-11 15:26:55,313 - __main__ - INFO - Vocabulary size: 10000
+2025-09-11 15:26:55,329 - __main__ - INFO - ============================================================
+2025-09-11 15:26:55,329 - __main__ - INFO - STARTING CPU-OPTIMIZED CHATBOT TRAINING PIPELINE
+2025-09-11 15:26:55,329 - __main__ - INFO - ============================================================
+2025-09-11 15:26:55,329 - __main__ - INFO - Preparing training data...
+2025-09-11 15:26:55,329 - __main__ - INFO - Loading intents from intents.json
+2025-09-11 15:26:55,548 - __main__ - INFO - Successfully loaded intents with utf-8 encoding
+2025-09-11 15:26:55,548 - __main__ - INFO - Loaded 141 intents
+2025-09-11 15:26:55,548 - __main__ - INFO - Total patterns: 7290
+2025-09-11 15:26:55,548 - __main__ - INFO - Total responses: 4577
+2025-09-11 15:26:55,548 - __main__ - INFO - Average patterns per intent: 51.70
+2025-09-11 15:26:55,548 - __main__ - INFO - Average responses per intent: 32.46
+2025-09-11 15:26:55,626 - __main__ - INFO - Loaded 7289 patterns across 136 intents
+2025-09-11 15:26:55,626 - __main__ - INFO -   ethical_hacking: 147 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   greeting: 97 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   java_basics: 86 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   python_basics: 85 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   festivals: 79 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   cpp_basics: 73 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   javascript_basics: 57 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   recipes: 56 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   goodbye: 55 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   astronomy: 55 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   backend_tips: 54 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   thanks: 53 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   small_talk: 53 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   frontend_tips: 53 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   help: 52 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   compliments: 52 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   confused: 52 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   advice: 52 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   motivation: 52 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   flirting: 52 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   making_friends: 52 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   technology_trends: 52 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   name: 51 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   music: 51 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   movies: 51 patterns
+2025-09-11 15:26:55,641 - __main__ - INFO -   sports: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   travel: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   books: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   technology: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   education: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   future: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   past: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   money: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   relationships: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   criticism: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   worried: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   tired: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   hungry: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   busy: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   learning: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   mental_health: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   loneliness: 51 patterns
+2025-09-11 15:26:55,657 - __main__ - INFO -   self_improvement: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   stress_management: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   online_courses: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   study_tips: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   language_learning: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   social_media: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   apps: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   gadgets: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   ai_chatbots: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   environment: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   space: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   global_issues: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   dream_job: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   gratitude: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   self_care: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   fitness: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   fashion: 51 patterns
+2025-09-11 15:26:55,672 - __main__ - INFO -   travel_recommendations: 51 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   career_opportunities: 51 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   startup_ideas: 51 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   quotes: 51 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   life_hacks: 51 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   current_affairs: 51 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   food_recommendations: 51 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   local_info: 51 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   festive_wishes: 51 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   how_are_you: 50 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   weather: 50 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   age: 50 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   location: 50 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   hobby: 50 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   food: 50 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   work: 50 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   family: 50 patterns
+2025-09-11 15:26:55,688 - __main__ - INFO -   pets: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   feelings: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   dreams: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   fears: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   health: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   opinions: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   jokes: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   bored: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   excited: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   sad: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   angry: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   confidence: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   sarcasm: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   anime: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   youtube: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   memes: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   tv_shows: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   coding: 50 patterns
+2025-09-11 15:26:55,704 - __main__ - INFO -   gaming: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   politics: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   life_goals: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   personality: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   passions: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   inspirations: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   hobbies: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   about_bot: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   device_parts_info: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   programming: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   parenting: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   spirituality: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   finance_investment: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   quantum_physics: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   nanotechnology: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   machine_learning: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   cybersecurity: 50 patterns
+2025-09-11 15:26:55,719 - __main__ - INFO -   programming_languages: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   ethical_ai: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   logical_reasoning: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   mathematical_reasoning: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   scientific_reasoning: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   historical_reasoning: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   ethical_reasoning: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   problem_solving: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   analytical_reasoning: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   critical_thinking: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   creative_reasoning: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   strategic_reasoning: 50 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   career_guidance: 49 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   noanswer: 49 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   chemistry_facts: 49 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   software_testing: 49 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   climate_change: 49 patterns
+2025-09-11 15:26:55,735 - __main__ - INFO -   space_exploration: 49 patterns
+2025-09-11 15:26:55,751 - __main__ - INFO -   automation: 46 patterns
+2025-09-11 15:26:55,751 - __main__ - INFO -   programming_errors: 30 patterns
+2025-09-11 15:26:55,751 - __main__ - INFO -   movie_info: 30 patterns
+2025-09-11 15:26:55,751 - __main__ - INFO -   history: 30 patterns
+2025-09-11 15:26:55,751 - __main__ - INFO -   biology_facts: 30 patterns
+2025-09-11 15:26:55,751 - __main__ - INFO -   science: 29 patterns
+2025-09-11 15:26:55,751 - __main__ - INFO -   mythology: 28 patterns
+2025-09-11 15:26:55,751 - __main__ - INFO - Class imbalance ratio: 5.25
+2025-09-11 15:26:55,751 - __main__ - WARNING - High class imbalance detected! Consider data augmentation or class weighting.
+2025-09-11 15:26:55,860 - __main__ - INFO - Tokenizer created with vocabulary size: 4640
+2025-09-11 15:26:55,985 - __main__ - INFO - Created sequences with shape: (7289, 50)
+2025-09-11 15:26:55,985 - __main__ - INFO - Label encoder created for 136 classes
+2025-09-11 15:26:55,985 - __main__ - INFO - Building CPU-optimized model for 136 classes
+2025-09-11 15:26:58,431 - __main__ - INFO - CPU-optimized model architecture created
+2025-09-11 15:26:58,431 - __main__ - INFO - Total parameters: 1,427,176
+2025-09-11 15:26:58,524 - __main__ - INFO - Starting CPU-optimized model training...
+2025-09-11 15:26:58,602 - __main__ - INFO - Training set size: 5831
+2025-09-11 15:26:58,602 - __main__ - INFO - Validation set size: 1458
+2025-09-11 15:26:58,602 - __main__ - INFO - Training epochs: 80
+2025-09-11 15:26:58,602 - __main__ - INFO - Batch size: 32
+2025-09-11 15:26:58,602 - __main__ - INFO - Computing class weights for imbalanced classes...
+2025-09-11 15:26:58,634 - __main__ - INFO - Class weights computed for 136 classes
+2025-09-11 15:26:58,634 - __main__ - INFO - Training started...
+2025-09-11 16:57:20,351 - __main__ - INFO - Enhanced Chatbot Trainer initialized
+2025-09-11 16:57:20,351 - __main__ - INFO - Model directory: models
+2025-09-11 16:57:20,351 - __main__ - INFO - Max sequence length: 50
+2025-09-11 16:57:20,351 - __main__ - INFO - Vocabulary size: 10000
+2025-09-11 16:57:20,351 - __main__ - INFO - ============================================================
+2025-09-11 16:57:20,351 - __main__ - INFO - STARTING CPU-OPTIMIZED CHATBOT TRAINING PIPELINE
+2025-09-11 16:57:20,351 - __main__ - INFO - ============================================================
+2025-09-11 16:57:20,351 - __main__ - INFO - Preparing training data...
+2025-09-11 16:57:20,351 - __main__ - INFO - Loading intents from intents.json
+2025-09-11 16:57:20,366 - __main__ - INFO - Successfully loaded intents with utf-8 encoding
+2025-09-11 16:57:20,366 - __main__ - INFO - Loaded 134 intents
+2025-09-11 16:57:20,366 - __main__ - INFO - Total patterns: 7815
+2025-09-11 16:57:20,366 - __main__ - INFO - Total responses: 4464
+2025-09-11 16:57:20,366 - __main__ - INFO - Average patterns per intent: 58.32
+2025-09-11 16:57:20,366 - __main__ - INFO - Average responses per intent: 33.31
+2025-09-11 16:57:20,507 - __main__ - INFO - Loaded 7814 patterns across 129 intents
+2025-09-11 16:57:20,507 - __main__ - INFO -   ethical_hacking: 147 patterns
+2025-09-11 16:57:20,507 - __main__ - INFO -   location: 112 patterns
+2025-09-11 16:57:20,507 - __main__ - INFO -   age: 111 patterns
+2025-09-11 16:57:20,507 - __main__ - INFO -   weather: 108 patterns
+2025-09-11 16:57:20,507 - __main__ - INFO -   help: 107 patterns
+2025-09-11 16:57:20,507 - __main__ - INFO -   logical_reasoning: 107 patterns
+2025-09-11 16:57:20,507 - __main__ - INFO -   work: 106 patterns
+2025-09-11 16:57:20,507 - __main__ - INFO -   scientific_reasoning: 105 patterns
+2025-09-11 16:57:20,507 - __main__ - INFO -   sports: 104 patterns
+2025-09-11 16:57:20,507 - __main__ - INFO -   hobby: 101 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   goodbye: 100 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   thanks: 100 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   name: 100 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   how_are_you: 99 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   food: 99 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   music: 98 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   movies: 98 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   greeting: 97 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   java_basics: 86 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   python_basics: 85 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   festivals: 79 patterns
+2025-09-11 16:57:20,522 - __main__ - INFO -   cpp_basics: 73 patterns
+2025-09-11 16:57:20,538 - __main__ - INFO -   javascript_basics: 57 patterns
+2025-09-11 16:57:20,538 - __main__ - INFO -   recipes: 56 patterns
+2025-09-11 16:57:20,538 - __main__ - INFO -   astronomy: 55 patterns
+2025-09-11 16:57:20,538 - __main__ - INFO -   backend_tips: 54 patterns
+2025-09-11 16:57:20,538 - __main__ - INFO -   small_talk: 53 patterns
+2025-09-11 16:57:20,538 - __main__ - INFO -   frontend_tips: 53 patterns
+2025-09-11 16:57:20,538 - __main__ - INFO -   compliments: 52 patterns
+2025-09-11 16:57:20,538 - __main__ - INFO -   confused: 52 patterns
+2025-09-11 16:57:20,538 - __main__ - INFO -   advice: 52 patterns
+2025-09-11 16:57:20,538 - __main__ - INFO -   motivation: 52 patterns
+2025-09-11 16:57:20,538 - __main__ - INFO -   flirting: 52 patterns
+2025-09-11 16:57:20,554 - __main__ - INFO -   making_friends: 52 patterns
+2025-09-11 16:57:20,554 - __main__ - INFO -   technology_trends: 52 patterns
+2025-09-11 16:57:20,554 - __main__ - INFO -   travel: 51 patterns
+2025-09-11 16:57:20,554 - __main__ - INFO -   books: 51 patterns
+2025-09-11 16:57:20,554 - __main__ - INFO -   technology: 51 patterns
+2025-09-11 16:57:20,554 - __main__ - INFO -   education: 51 patterns
+2025-09-11 16:57:20,554 - __main__ - INFO -   future: 51 patterns
+2025-09-11 16:57:20,554 - __main__ - INFO -   past: 51 patterns
+2025-09-11 16:57:20,554 - __main__ - INFO -   money: 51 patterns
+2025-09-11 16:57:20,554 - __main__ - INFO -   relationships: 51 patterns
+2025-09-11 16:57:20,554 - __main__ - INFO -   criticism: 51 patterns
+2025-09-11 16:57:20,569 - __main__ - INFO -   worried: 51 patterns
+2025-09-11 16:57:20,569 - __main__ - INFO -   tired: 51 patterns
+2025-09-11 16:57:20,569 - __main__ - INFO -   hungry: 51 patterns
+2025-09-11 16:57:20,569 - __main__ - INFO -   busy: 51 patterns
+2025-09-11 16:57:20,569 - __main__ - INFO -   learning: 51 patterns
+2025-09-11 16:57:20,569 - __main__ - INFO -   mental_health: 51 patterns
+2025-09-11 16:57:20,569 - __main__ - INFO -   loneliness: 51 patterns
+2025-09-11 16:57:20,569 - __main__ - INFO -   self_improvement: 51 patterns
+2025-09-11 16:57:20,569 - __main__ - INFO -   stress_management: 51 patterns
+2025-09-11 16:57:20,569 - __main__ - INFO -   online_courses: 51 patterns
+2025-09-11 16:57:20,569 - __main__ - INFO -   study_tips: 51 patterns
+2025-09-11 16:57:20,585 - __main__ - INFO -   language_learning: 51 patterns
+2025-09-11 16:57:20,585 - __main__ - INFO -   social_media: 51 patterns
+2025-09-11 16:57:20,585 - __main__ - INFO -   apps: 51 patterns
+2025-09-11 16:57:20,585 - __main__ - INFO -   gadgets: 51 patterns
+2025-09-11 16:57:20,585 - __main__ - INFO -   ai_chatbots: 51 patterns
+2025-09-11 16:57:20,585 - __main__ - INFO -   environment: 51 patterns
+2025-09-11 16:57:20,585 - __main__ - INFO -   space: 51 patterns
+2025-09-11 16:57:20,585 - __main__ - INFO -   global_issues: 51 patterns
+2025-09-11 16:57:20,585 - __main__ - INFO -   dream_job: 51 patterns
+2025-09-11 16:57:20,585 - __main__ - INFO -   gratitude: 51 patterns
+2025-09-11 16:57:20,600 - __main__ - INFO -   self_care: 51 patterns
+2025-09-11 16:57:20,600 - __main__ - INFO -   fitness: 51 patterns
+2025-09-11 16:57:20,600 - __main__ - INFO -   fashion: 51 patterns
+2025-09-11 16:57:20,600 - __main__ - INFO -   travel_recommendations: 51 patterns
+2025-09-11 16:57:20,600 - __main__ - INFO -   career_opportunities: 51 patterns
+2025-09-11 16:57:20,600 - __main__ - INFO -   startup_ideas: 51 patterns
+2025-09-11 16:57:20,600 - __main__ - INFO -   quotes: 51 patterns
+2025-09-11 16:57:20,600 - __main__ - INFO -   life_hacks: 51 patterns
+2025-09-11 16:57:20,600 - __main__ - INFO -   current_affairs: 51 patterns
+2025-09-11 16:57:20,600 - __main__ - INFO -   food_recommendations: 51 patterns
+2025-09-11 16:57:20,600 - __main__ - INFO -   local_info: 51 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   festive_wishes: 51 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   family: 50 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   pets: 50 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   feelings: 50 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   dreams: 50 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   fears: 50 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   health: 50 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   opinions: 50 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   jokes: 50 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   bored: 50 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   excited: 50 patterns
+2025-09-11 16:57:20,616 - __main__ - INFO -   sad: 50 patterns
+2025-09-11 16:57:20,632 - __main__ - INFO -   angry: 50 patterns
+2025-09-11 16:57:20,632 - __main__ - INFO -   confidence: 50 patterns
+2025-09-11 16:57:20,632 - __main__ - INFO -   sarcasm: 50 patterns
+2025-09-11 16:57:20,632 - __main__ - INFO -   anime: 50 patterns
+2025-09-11 16:57:20,632 - __main__ - INFO -   youtube: 50 patterns
+2025-09-11 16:57:20,632 - __main__ - INFO -   memes: 50 patterns
+2025-09-11 16:57:20,632 - __main__ - INFO -   tv_shows: 50 patterns
+2025-09-11 16:57:20,632 - __main__ - INFO -   coding: 50 patterns
+2025-09-11 16:57:20,632 - __main__ - INFO -   gaming: 50 patterns
+2025-09-11 16:57:20,632 - __main__ - INFO -   politics: 50 patterns
+2025-09-11 16:57:20,632 - __main__ - INFO -   life_goals: 50 patterns
+2025-09-11 16:57:20,647 - __main__ - INFO -   personality: 50 patterns
+2025-09-11 16:57:20,647 - __main__ - INFO -   passions: 50 patterns
+2025-09-11 16:57:20,647 - __main__ - INFO -   inspirations: 50 patterns
+2025-09-11 16:57:20,647 - __main__ - INFO -   hobbies: 50 patterns
+2025-09-11 16:57:20,647 - __main__ - INFO -   about_bot: 50 patterns
+2025-09-11 16:57:20,647 - __main__ - INFO -   device_parts_info: 50 patterns
+2025-09-11 16:57:20,647 - __main__ - INFO -   programming: 50 patterns
+2025-09-11 16:57:20,647 - __main__ - INFO -   parenting: 50 patterns
+2025-09-11 16:57:20,647 - __main__ - INFO -   spirituality: 50 patterns
+2025-09-11 16:57:20,647 - __main__ - INFO -   finance_investment: 50 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   quantum_physics: 50 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   nanotechnology: 50 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   machine_learning: 50 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   cybersecurity: 50 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   programming_languages: 50 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   ethical_ai: 50 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   career_guidance: 49 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   noanswer: 49 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   chemistry_facts: 49 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   software_testing: 49 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   climate_change: 49 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   space_exploration: 49 patterns
+2025-09-11 16:57:20,663 - __main__ - INFO -   automation: 46 patterns
+2025-09-11 16:57:20,679 - __main__ - INFO -   mathematical_reasoning: 33 patterns
+2025-09-11 16:57:20,679 - __main__ - INFO -   programming_errors: 30 patterns
+2025-09-11 16:57:20,679 - __main__ - INFO -   movie_info: 30 patterns
+2025-09-11 16:57:20,679 - __main__ - INFO -   history: 30 patterns
+2025-09-11 16:57:20,679 - __main__ - INFO -   biology_facts: 30 patterns
+2025-09-11 16:57:20,679 - __main__ - INFO -   science: 29 patterns
+2025-09-11 16:57:20,679 - __main__ - INFO -   mythology: 28 patterns
+2025-09-11 16:57:20,679 - __main__ - INFO - Class imbalance ratio: 5.43
+2025-09-11 16:57:20,679 - __main__ - WARNING - High class imbalance detected! Consider data augmentation or class weighting.
+2025-09-11 16:57:20,804 - __main__ - INFO - Tokenizer created with vocabulary size: 4890
+2025-09-11 16:57:20,944 - __main__ - INFO - Created sequences with shape: (7814, 50)
+2025-09-11 16:57:20,960 - __main__ - INFO - Label encoder created for 129 classes
+2025-09-11 16:57:20,960 - __main__ - INFO - Building CPU-optimized model for 129 classes
+2025-09-11 16:57:21,163 - __main__ - INFO - CPU-optimized model architecture created
+2025-09-11 16:57:21,163 - __main__ - INFO - Total parameters: 1,426,945
+2025-09-11 16:57:21,257 - __main__ - INFO - Starting CPU-optimized model training...
+2025-09-11 16:57:21,288 - __main__ - INFO - Training set size: 6251
+2025-09-11 16:57:21,288 - __main__ - INFO - Validation set size: 1563
+2025-09-11 16:57:21,288 - __main__ - INFO - Training epochs: 40
+2025-09-11 16:57:21,288 - __main__ - INFO - Batch size: 32
+2025-09-11 16:57:21,288 - __main__ - INFO - Computing class weights for imbalanced classes...
+2025-09-11 16:57:21,288 - __main__ - INFO - Class weights computed for 129 classes
+2025-09-11 16:57:21,288 - __main__ - INFO - Training started...
+2025-09-11 17:09:54,017 - __main__ - INFO - Evaluating model...
+2025-09-11 17:09:55,001 - __main__ - INFO - Training completed in 753.74 seconds
+2025-09-11 17:09:55,001 - __main__ - INFO - Final validation accuracy: 0.5726
+2025-09-11 17:09:55,001 - __main__ - INFO - Best validation accuracy: 0.5726
+2025-09-11 17:10:00,313 - __main__ - INFO - Training history plot saved to models\training_history.png
+2025-09-11 17:10:11,166 - __main__ - INFO - Model saved to models\chatbot_v2_model.keras
+2025-09-11 17:10:11,173 - __main__ - INFO - Tokenizer saved to models\tokenizer.pkl
+2025-09-11 17:10:11,173 - __main__ - INFO - Label encoder saved to models\label_encoder.pkl
+2025-09-11 17:10:11,173 - __main__ - INFO - Training metadata saved to models\training_metadata.json
+2025-09-11 17:10:11,173 - __main__ - INFO - ============================================================
+2025-09-11 17:10:11,173 - __main__ - INFO - TRAINING COMPLETED SUCCESSFULLY!
+2025-09-11 17:10:11,173 - __main__ - INFO - ============================================================
+2025-09-11 17:10:11,173 - __main__ - INFO - Best Accuracy: 0.5726
+2025-09-11 17:10:11,173 - __main__ - INFO - Training Time: 753.74 seconds
+2025-09-11 17:10:11,173 - __main__ - INFO - Epochs Trained: 40
+2025-09-11 17:10:11,173 - __main__ - INFO - Model Parameters: 1,426,945
+2025-09-11 17:10:11,173 - __main__ - INFO - ============================================================
+2025-09-11 17:10:11,173 - __main__ - INFO - Final Results Summary:
+2025-09-11 17:10:11,173 - __main__ - INFO -   Best Accuracy: 0.5726
+2025-09-11 17:10:11,188 - __main__ - INFO -   Final Accuracy: 0.5726
+2025-09-11 17:10:11,188 - __main__ - INFO -   Training Time: 753.74 seconds
+2025-09-11 17:10:11,188 - __main__ - INFO -   Epochs Trained: 40

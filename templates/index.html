@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radhika AI </title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        :root {
+            --primary-color: #0d7ff2;
+            --secondary-color: #f0f2f5;
+            --text-primary: #111418;
+            --text-secondary: #60758a;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .panel { background: #ffffff; border: 1px solid #e5e7eb; }
+        .message { animation: fadeIn .25s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        .chat-container::-webkit-scrollbar { width: 6px; }
+        .chat-container::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 3px; }
+        .confidence-bar { transition: width .3s ease; }
+        /* Constrain chat area and prevent overflow */
+        #chat-container { 
+            max-height: calc(100vh - 220px); /* header + input/footer space */
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        #chat-container * {
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+        /* Keep input visible like ChatGPT */
+        .input-sticky { position: sticky; bottom: 0; background: #fff; }
+    </style>
+</head>
+<body class="bg-white min-h-screen text-[var(--text-primary)]">
+    <div class="w-full h-screen px-6 flex flex-col">
+        <!-- Top bar -->
+        <header class="py-4 flex items-center justify-between border-b border-gray-200">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 text-[var(--primary-color)]">
+                    <svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"></path></svg>
+                </div>
+                <div class="text-sm">Radhika_Chatbot</div>
+                </div>
+            <div class="text-xs text-[var(--text-secondary)]">Context • Reasoning • Knowledge</div>
+        </header>
+
+        <!-- Main Chat Container -->
+        <div class="flex flex-col lg:flex-row gap-6 flex-1">
+            <!-- Chat Area -->
+            <div class="flex-1 flex flex-col panel rounded-2xl overflow-hidden">
+                <!-- Chat Messages -->
+                <div id="chat-container" class="flex-1 p-6 chat-container">
+                    <!-- Welcome Message -->
+                    <div class="message mb-6">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-9 h-9 rounded-md flex items-center justify-center text-white font-bold" style="background: var(--primary-color)">AI</div>
+                            <div class="flex-1">
+                                <div class="rounded-2xl p-4 bg-[var(--secondary-color)] text-[var(--text-primary)]">
+                                    <p class="mb-1">Hello! I’m your AI assistant.</p>
+                                    <p class="text-sm text-[var(--text-secondary)]">Ask about technology, books, news, or any topic.</p>
+                                </div>
+                                <div class="mt-2 text-xs text-[var(--text-secondary)]">Intent: greeting • Confidence: 100%</div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <!-- In-chat Suggestions (shown on start) -->
+                    <div id="start-suggestions" class="message mb-4">
+                        <div class="flex flex-wrap gap-2">
+                            <button class="px-3 py-2 rounded-lg bg-[var(--secondary-color)] text-[var(--text-primary)] hover:bg-gray-200 text-sm" onclick="suggestMessage('Tell me about neuromorphic chips')">Tell me about neuromorphic chips</button>
+                            <button class="px-3 py-2 rounded-lg bg-[var(--secondary-color)] text-[var(--text-primary)] hover:bg-gray-200 text-sm" onclick="suggestMessage('What are the latest AI news?')">What are the latest AI news?</button>
+                            <button class="px-3 py-2 rounded-lg bg-[var(--secondary-color)] text-[var(--text-primary)] hover:bg-gray-200 text-sm" onclick="suggestMessage('Recommend some technical books')">Recommend some technical books</button>
+                            <button class="px-3 py-2 rounded-lg bg-[var(--secondary-color)] text-[var(--text-primary)] hover:bg-gray-200 text-sm" onclick="suggestMessage('How does machine learning work?')">How does machine learning work?</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="p-4 border-t border-gray-200 input-sticky">
+                    <form id="chat-form" class="space-y-4">
+                        <div class="flex space-x-3">
+                            <div class="flex-1 relative">
+                                <input 
+                                    type="text" 
+                                    id="message-input" 
+                                    placeholder="Type your message..."
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-[var(--secondary-color)] text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent"
+                                    maxlength="500"
+                                >
+                                <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                                    <span id="char-count" class="text-xs text-[var(--text-secondary)]">0/500</span>
+                                </div>
+                            </div>
+                            <button 
+                                type="submit" 
+                                id="send-btn"
+                                class="px-5 py-3 bg-[var(--primary-color)] hover:bg-blue-600 text-white rounded-xl transition-all duration-150 flex items-center space-x-2 disabled:opacity-50"
+                            >
+                                <span>→</span>
+                                <span>Send</span>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center justify-between text-xs text-[var(--text-secondary)]">
+                            <div class="flex items-center space-x-4">
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" id="debug-mode" class="rounded">
+                                    <span>Debug Mode</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" id="knowledge-mode" class="rounded" checked>
+                                    <span>Knowledge Integration</span>
+                                </label>
+                            </div>
+                            <button 
+                                type="button" 
+                                id="clear-chat"
+                                class="hover:text-[var(--primary-color)] transition-colors flex items-center space-x-1"
+                            >
+                                <span>Clear Chat</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="w-full lg:w-80 space-y-6 hidden">
+                <!-- Stats -->
+                <div class="panel rounded-2xl p-6">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center space-x-2">
+                        <span>📊</span>
+                        <span>Session Stats</span>
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-[var(--text-secondary)]">Messages</span>
+                            <span id="message-count" class="font-semibold">0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-[var(--text-secondary)]">Avg Confidence</span>
+                            <span id="avg-confidence" class="font-semibold">N/A</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-[var(--text-secondary)]">Knowledge Used</span>
+                            <span id="knowledge-count" class="font-semibold">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggestions -->
+                <div class="panel rounded-2xl p-6 hidden">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center space-x-2">
+                        <span>💡</span>
+                        <span>Try These</span>
+                    </h3>
+                    <div class="space-y-2">
+                        <button class="suggestion-card w-full p-3 bg-[var(--secondary-color)] hover:bg-gray-100 rounded-xl text-left text-sm transition-all duration-200" onclick="suggestMessage('Tell me about neuromorphic chips')">
+                            Tell me about neuromorphic chips
+                        </button>
+                        <button class="suggestion-card w-full p-3 bg-[var(--secondary-color)] hover:bg-gray-100 rounded-xl text-left text-sm transition-all duration-200" onclick="suggestMessage('What are the latest AI news?')">
+                            What are the latest AI news?
+                        </button>
+                        <button class="suggestion-card w-full p-3 bg-[var(--secondary-color)] hover:bg-gray-100 rounded-xl text-left text-sm transition-all duration-200" onclick="suggestMessage('Recommend some technical books')">
+                            Recommend some technical books
+                        </button>
+                        <button class="suggestion-card w-full p-3 bg-[var(--secondary-color)] hover:bg-gray-100 rounded-xl text-left text-sm transition-all duration-200" onclick="suggestMessage('How does machine learning work?')">
+                            How does machine learning work?
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Response Info -->
+                <div id="response-info" class="panel rounded-2xl p-6 hidden">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center space-x-2">
+                        <span>ℹ️</span>
+                        <span>Response Details</span>
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <span class="text-sm opacity-80">Intent:</span>
+                            <span id="last-intent" class="ml-2 font-medium"></span>
+                        </div>
+                        <div>
+                            <span class="text-sm opacity-80">Confidence:</span>
+                            <div class="mt-1">
+                                <div class="flex items-center space-x-2">
+                                    <div class="flex-1 bg-white bg-opacity-20 rounded-full h-2">
+                                        <div id="confidence-bar" class="confidence-bar bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full"></div>
+                                    </div>
+                                    <span id="confidence-text" class="text-sm font-medium"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="entities-section" class="hidden">
+                            <span class="text-sm opacity-80">Entities:</span>
+                            <div id="entities-container" class="mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evaluation Panel -->
+                <div class="panel rounded-2xl p-6 hidden">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center space-x-2">
+                        <span>🧪</span>
+                        <span>Quick Evaluate</span>
+                    </h3>
+                    <p class="text-sm text-[var(--text-secondary)] mb-2">Paste labeled samples (JSON array of { text, label }).</p>
+                    <textarea id="eval-input" class="w-full h-28 p-3 bg-[var(--secondary-color)] border border-gray-200 rounded-xl text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] text-sm" placeholder='[
+  {"text": "hello", "label": "greeting"},
+  {"text": "bye", "label": "goodbye"}
+]'></textarea>
+                    <div class="mt-3 flex items-center space-x-3">
+                        <button id="eval-run" class="px-4 py-2 bg-[var(--primary-color)] text-white rounded-xl text-sm">Run</button>
+                        <span id="eval-status" class="text-sm text-[var(--text-secondary)]"></span>
+                    </div>
+                    <div id="eval-result" class="mt-3 text-sm"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm hidden items-center justify-center z-50">
+        <div class="rounded-2xl p-8 text-center bg-white/90">
+            <div class="w-8 h-8 border-4 border-gray-300 border-opacity-50 border-t-[var(--primary-color)] rounded-full mx-auto mb-4 animate-spin"></div>
+            <p class="text-[var(--text-secondary)]">AI is thinking...</p>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let messageCount = 0;
+        let totalConfidence = 0;
+        let knowledgeUsedCount = 0;
+        let sessionId = null;
+
+        // DOM elements
+        let chatContainer, messageInput, sendBtn, chatForm, charCount, loadingOverlay, debugMode, knowledgeMode, clearChatBtn;
+        let evalInput, evalRunBtn, evalStatus, evalResult;
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get DOM elements
+            chatContainer = document.getElementById('chat-container');
+            messageInput = document.getElementById('message-input');
+            sendBtn = document.getElementById('send-btn');
+            chatForm = document.getElementById('chat-form');
+            charCount = document.getElementById('char-count');
+            loadingOverlay = document.getElementById('loading-overlay');
+            debugMode = document.getElementById('debug-mode');
+            knowledgeMode = document.getElementById('knowledge-mode');
+            clearChatBtn = document.getElementById('clear-chat');
+            evalInput = document.getElementById('eval-input');
+            evalRunBtn = document.getElementById('eval-run');
+            evalStatus = document.getElementById('eval-status');
+            evalResult = document.getElementById('eval-result');
+
+            // Add event listeners
+            if (chatForm) chatForm.addEventListener('submit', handleSubmit);
+            if (messageInput) messageInput.addEventListener('input', updateCharCount);
+            if (clearChatBtn) clearChatBtn.addEventListener('click', clearChat);
+            if (evalRunBtn) evalRunBtn.addEventListener('click', runEvaluation);
+
+            // Generate session ID
+            sessionId = 'session_' + Math.random().toString(36).substr(2, 9);
+
+            // Focus on input
+            if (messageInput) messageInput.focus();
+
+            console.log('Chatbot interface initialized successfully');
+        });
+
+        function updateCharCount() {
+            if (!charCount || !messageInput) return;
+            const count = messageInput.value.length;
+            charCount.textContent = `${count}/500`;
+            
+            if (count > 450) {
+                charCount.className = 'text-xs text-red-400';
+            } else if (count > 300) {
+                charCount.className = 'text-xs text-yellow-400';
+            } else {
+                charCount.className = 'text-xs text-white opacity-50';
+            }
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+            
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // Disable input
+            messageInput.disabled = true;
+            sendBtn.disabled = true;
+            loadingOverlay.classList.remove('hidden');
+            loadingOverlay.classList.add('flex');
+
+            // Add user message to chat
+            addMessage(message, 'user');
+            messageInput.value = '';
+            updateCharCount();
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        debug: debugMode ? debugMode.checked : false,
+                        enable_knowledge: knowledgeMode ? knowledgeMode.checked : true
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    addMessage(data.response, 'bot', data);
+                    updateStats(data);
+                    updateResponseInfo(data);
+                } else {
+                    addMessage(data.response || 'Sorry, something went wrong.', 'bot', { intent: 'error', confidence: 0 });
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Sorry, I encountered an error. Please try again.', 'bot', { intent: 'error', confidence: 0 });
+            }
+
+            // Re-enable input
+            messageInput.disabled = false;
+            sendBtn.disabled = false;
+            loadingOverlay.classList.add('hidden');
+            loadingOverlay.classList.remove('flex');
+            if (messageInput) messageInput.focus();
+        }
+
+        async function runEvaluation() {
+            if (!evalInput) return;
+            try {
+                const samples = JSON.parse(evalInput.value);
+                if (!Array.isArray(samples) || samples.length === 0) {
+                    if (evalStatus) evalStatus.textContent = 'Provide a non-empty JSON array.';
+                    return;
+                }
+                if (evalStatus) evalStatus.textContent = 'Evaluating...';
+                if (evalResult) evalResult.textContent = '';
+
+                const res = await fetch('/evaluate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ samples })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    if (evalStatus) evalStatus.textContent = data.error || 'Evaluation failed';
+                    return;
+                }
+                if (evalStatus) evalStatus.textContent = `Accuracy: ${(data.accuracy * 100).toFixed(2)}% (${data.correct}/${data.total})`;
+                if (evalResult) {
+                    const rows = (data.details || []).slice(0, 20).map(d => {
+                        const ok = d.correct ? '✅' : '❌';
+                        return `<div class="mt-1">${ok} <span class="opacity-80">"${escapeHtml(d.text)}"</span> → <code>${d.predicted || 'none'}</code> (gt: <code>${d.label}</code>)</div>`;
+                    }).join('');
+                    evalResult.innerHTML = rows || '<span class="opacity-70">No details.</span>';
+                }
+            } catch (e) {
+                if (evalStatus) evalStatus.textContent = 'Invalid JSON or request failed.';
+            }
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function addMessage(text, sender, data = null) {
+            if (!chatContainer) return;
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-bubble mb-6';
+
+            const isUser = sender === 'user';
+            const avatarBg = isUser ? 'bg-gradient-to-br from-green-500 to-teal-600' : 'bg-gradient-to-br from-blue-500 to-purple-600';
+            const avatarText = isUser ? 'U' : 'AI';
+            const messageAlign = isUser ? 'flex-row-reverse' : 'flex-row';
+            const bubbleBg = isUser ? 'bg-[var(--secondary-color)]' : 'bg-[var(--secondary-color)]';
+            const bubbleText = isUser ? 'text-[var(--text-primary)]' : 'text-[var(--text-primary)]';
+
+            messageDiv.innerHTML = `
+                <div class="flex items-start space-x-3 ${messageAlign}">
+                    <div class="w-10 h-10 ${avatarBg} rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+                        ${avatarText}
+                    </div>
+                    <div class="flex-1 ${isUser ? 'text-right' : ''}">
+                        <div class="${bubbleBg} ${bubbleText} rounded-2xl p-4 ${isUser ? 'ml-12' : 'mr-12'}">
+                            ${formatMessage(text)}
+                        </div>
+                        ${!isUser && data ? createMetadata(data) : ''}
+                    </div>
+                </div>
+            `;
+
+            chatContainer.appendChild(messageDiv);
+            // Smooth auto-scroll to bottom
+            chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' });
+        }
+
+        function formatMessage(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/`(.*?)`/g, '<code class="bg-white bg-opacity-10 px-1 py-0.5 rounded text-sm">$1</code>')
+                .replace(/\n/g, '<br>');
+        }
+
+        function createMetadata(data) {
+            let metadataHTML = `
+                <div class="mt-2 flex items-center space-x-3 text-xs text-[var(--text-secondary)]">
+                    <span>Intent: ${data.intent}</span>
+                    <span>•</span>
+                    <span>Confidence: ${Math.round(data.confidence * 100)}%</span>
+            `;
+
+            if (data.knowledge_used) {
+                metadataHTML += `<span>•</span><span class="text-yellow-600">Knowledge Used</span>`;
+            }
+
+            if (data.entities && Object.keys(data.entities).length > 0) {
+                metadataHTML += `<span>•</span><span>${Object.keys(data.entities).length} entities</span>`;
+            }
+
+            // Reinforcement learning feedback controls
+            metadataHTML += `
+                <span>•</span>
+                <button class="px-2 py-1 rounded bg-gray-100 hover:bg-gray-200" onclick="sendFeedback('positive')">👍</button>
+                <button class="px-2 py-1 rounded bg-gray-100 hover:bg-gray-200" onclick="sendFeedback('negative')">👎</button>
+            `;
+
+            metadataHTML += '</div>';
+
+            return metadataHTML;
+        }
+
+        async function sendFeedback(type) {
+            try {
+                await fetch('/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ feedback: type })
+                });
+            } catch (e) {
+                // ignore feedback errors
+            }
+        }
+
+        function updateStats(data) {
+            messageCount++;
+            totalConfidence += data.confidence;
+            if (data.knowledge_used) knowledgeUsedCount++;
+
+            const messageCountEl = document.getElementById('message-count');
+            const avgConfidenceEl = document.getElementById('avg-confidence');
+            const knowledgeCountEl = document.getElementById('knowledge-count');
+
+            if (messageCountEl) messageCountEl.textContent = messageCount;
+            if (avgConfidenceEl) avgConfidenceEl.textContent = Math.round((totalConfidence / messageCount) * 100) + '%';
+            if (knowledgeCountEl) knowledgeCountEl.textContent = knowledgeUsedCount;
+        }
+
+        function updateResponseInfo(data) {
+            const responseInfo = document.getElementById('response-info');
+            const lastIntent = document.getElementById('last-intent');
+            const confidenceBar = document.getElementById('confidence-bar');
+            const confidenceText = document.getElementById('confidence-text');
+
+            if (lastIntent) lastIntent.textContent = data.intent;
+            
+            const confidencePercent = Math.round(data.confidence * 100);
+            if (confidenceBar) confidenceBar.style.width = confidencePercent + '%';
+            if (confidenceText) confidenceText.textContent = confidencePercent + '%';
+
+            if (responseInfo) responseInfo.classList.remove('hidden');
+        }
+
+        function suggestMessage(message) {
+            if (messageInput) {
+                messageInput.value = message;
+                messageInput.focus();
+            }
+        }
+
+        function clearChat() {
+            if (confirm('Are you sure you want to clear the chat history?') && chatContainer) {
+                chatContainer.innerHTML = `
+                    <div class="chat-bubble mb-6">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                                AI
+                            </div>
+                            <div class="flex-1">
+                                <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-4 text-white">
+                                    <p>Chat cleared! How can I help you today?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Reset stats
+                messageCount = 0;
+                totalConfidence = 0;
+                knowledgeUsedCount = 0;
+                updateStats({ confidence: 0, knowledge_used: false });
+                
+                const responseInfo = document.getElementById('response-info');
+                if (responseInfo) responseInfo.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
