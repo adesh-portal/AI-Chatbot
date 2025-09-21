@@ -1,6 +1,6 @@
 # 🤖 AI Chatbot  
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)  
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)  
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange?logo=tensorflow)  
 ![Flask](https://img.shields.io/badge/Flask-Web%20Framework-lightgrey?logo=flask)  
 ![License](https://img.shields.io/badge/License-MIT-green)  
