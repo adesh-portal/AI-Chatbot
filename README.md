@@ -52,11 +52,13 @@ venv\Scripts\activate   # Windows
 source venv/bin/activate   # Linux/Mac
 pip install -r requirements.txt
  When you add new data in intent.json file then run => python train.py when traning is complete .
-you can run => <img width="1920" height="1080" alt="Screenshot (73)" src="https://github.com/user-attachments/assets/c0d0851e-2115-4f48-b3b6-4ac9a5d12b03" />
+you can run => python app.py
+
+<img width="1920" height="1080" alt="Screenshot (73)" src="https://github.com/user-attachments/assets/c0d0851e-2115-4f48-b3b6-4ac9a5d12b03" />
 <img width="1920" height="1080" alt="Screenshot (72)" src="https://github.com/user-attachments/assets/a23cd9d1-36e7-4637-8088-8ad608e71328" />
 <img width="1920" height="1080" alt="Screenshot (71)" src="https://github.com/user-attachments/assets/16f762ee-68d7-4725-b0ee-0289c15e003e" />
 <img width="1920" height="1080" alt="Screenshot (70)" src="https://github.com/user-attachments/assets/fca89078-39d7-4661-adac-a7270aacc36a" />
 <img width="1920" height="1080" alt="Screenshot (69)" src="https://github.com/user-attachments/assets/a24167ff-c4a6-4062-a5b2-d17435af0155" />
 <img width="1920" height="1080" alt="Screenshot (65)" src="https://github.com/user-attachments/assets/dfca34d6-5e5e-42bf-bf17-b723cf84a63e" />
 <img width="1920" height="1080" alt="Screenshot (63)" src="https://github.com/user-attachments/assets/4be19d5d-5757-428a-8d9d-0678f69ed6a9" />
-python app.py
+
